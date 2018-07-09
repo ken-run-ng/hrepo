@@ -1,0 +1,106 @@
+harnessApiVersion: '1.0'
+type: BASIC
+envName: PROD
+failureStrategies:
+- executionScope: WORKFLOW
+  failureTypes:
+  - APPLICATION_ERROR
+  repairActionCode: ROLLBACK_WORKFLOW
+  retryCount: 0
+notificationRules:
+- conditions:
+  - FAILED
+  executionScope: WORKFLOW
+  notificationGroups:
+  - KenNotificationGroup
+phases:
+- type: SSH
+  computeProviderName: aws
+  daemonSet: false
+  infraMappingName: amazon web services- aws_traininguser1 - AWS - SSH - us-west-1
+  name: Phase 1
+  phaseSteps:
+  - type: INFRASTRUCTURE_NODE
+    name: Prepare Infra
+    steps:
+    - type: AWS_NODE_SELECT
+      name: AwsNodeSelect
+      properties:
+        hostNames:
+        - ip-172-31-31-1.ec2.internal
+        excludeSelectedHostsFromFuturePhases: true
+        specificHosts: true
+    stepsInParallel: false
+  - type: DISABLE_SERVICE
+    name: Disable Service
+    stepsInParallel: false
+  - type: DEPLOY_SERVICE
+    name: Deploy Service
+    stepsInParallel: false
+  - type: ENABLE_SERVICE
+    name: Enable Service
+    stepsInParallel: false
+  - type: VERIFY_SERVICE
+    name: Verify Service
+    steps:
+    - type: EMAIL
+      name: Email
+      properties:
+        subject: test sub
+        body: test body
+        toAddress: ${serviceVariable.A}
+    stepsInParallel: false
+  - type: WRAP_UP
+    name: Wrap Up
+    stepsInParallel: false
+  provisionNodes: false
+  serviceName: training1Service
+  statefulSet: false
+preDeploymentSteps:
+- type: ARTIFACT_CHECK
+  name: Artifact Check
+rollbackPhases:
+- type: SSH
+  computeProviderName: aws
+  daemonSet: false
+  infraMappingName: amazon web services- aws_traininguser1 - AWS - SSH - us-west-1
+  name: Rollback Phase 1
+  phaseNameForRollback: Phase 1
+  phaseSteps:
+  - type: DISABLE_SERVICE
+    name: Disable Service
+    phaseStepNameForRollback: Enable Service
+    statusForRollback: SUCCESS
+    stepsInParallel: false
+  - type: STOP_SERVICE
+    name: Stop Service
+    phaseStepNameForRollback: Deploy Service
+    statusForRollback: SUCCESS
+    stepsInParallel: false
+  - type: DEPLOY_SERVICE
+    name: Deploy Service
+    phaseStepNameForRollback: Deploy Service
+    statusForRollback: SUCCESS
+    steps:
+    - type: COMMAND
+      name: Install
+      properties:
+        commandName: Install
+    stepsInParallel: false
+  - type: ENABLE_SERVICE
+    name: Enable Service
+    phaseStepNameForRollback: Disable Service
+    statusForRollback: SUCCESS
+    stepsInParallel: false
+  - type: VERIFY_SERVICE
+    name: Verify Service
+    phaseStepNameForRollback: Deploy Service
+    statusForRollback: SUCCESS
+    stepsInParallel: false
+  - type: WRAP_UP
+    name: Wrap Up
+    stepsInParallel: false
+  provisionNodes: false
+  serviceName: training1Service
+  statefulSet: false
+templatized: false
