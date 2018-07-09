@@ -1,0 +1,5 @@
+harnessApiVersion: '1.0'
+type: DOCKER
+imageName: wingsplugins/todolist
+metadataOnly: true
+serverName: docker_Ken
