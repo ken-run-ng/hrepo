@@ -4,5 +4,5 @@ environmentType: PROD
 variableOverrides:
 - name: var1
   serviceName: jobvitez1280Service
-  value: B
+  value: C
   valueType: TEXT
