@@ -5,3 +5,7 @@ pipelineStages:
   name: traininguser1workflow
   parallel: false
   workflowName: traininguser1workflow
+- type: ENV_STATE
+  name: traininguser2workflow
+  parallel: false
+  workflowName: traininguser2workflow
