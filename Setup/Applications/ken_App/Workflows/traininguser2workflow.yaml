@@ -1,6 +1,6 @@
 harnessApiVersion: '1.0'
 type: BASIC
-envName: PROD
+envName: DEV
 failureStrategies:
 - executionScope: WORKFLOW
   failureTypes:
@@ -17,7 +17,7 @@ phases:
 - type: SSH
   computeProviderName: aws
   daemonSet: false
-  infraMappingName: amazon web services- aws_traininguser1 - AWS - SSH - us-west-1
+  infraMappingName: amazon web services- aws - AWS - SSH - us-east-1
   name: Phase 1
   phaseSteps:
   - type: INFRASTRUCTURE_NODE
@@ -26,10 +26,8 @@ phases:
     - type: AWS_NODE_SELECT
       name: AwsNodeSelect
       properties:
-        hostNames:
-        - ip-172-31-31-1.ec2.internal
         excludeSelectedHostsFromFuturePhases: true
-        specificHosts: true
+        specificHosts: false
     stepsInParallel: false
   - type: DISABLE_SERVICE
     name: Disable Service
@@ -63,7 +61,7 @@ rollbackPhases:
 - type: SSH
   computeProviderName: aws
   daemonSet: false
-  infraMappingName: amazon web services- aws_traininguser1 - AWS - SSH - us-west-1
+  infraMappingName: amazon web services- aws - AWS - SSH - us-east-1
   name: Rollback Phase 1
   phaseNameForRollback: Phase 1
   phaseSteps:
