@@ -1,0 +1,12 @@
+harnessApiVersion: '1.0'
+type: DIRECT_KUBERNETES
+caCert: safeharness:gcioPlsxSlObgcm-ZqMe_g
+clientCert: safeharness:94HIXXyvTc2nJuSMQMUP1g
+clientKey: safeharness:DShg6VpdQsq4uqNYanScqA
+computeProviderName: kubernetes_cluster
+computeProviderType: KUBERNETES_CLUSTER
+deploymentType: KUBERNETES
+infraMappingType: DIRECT_KUBERNETES
+namespace: default
+password: safeharness:0k1nQ1K4S6yKB5h2gwTdIg
+serviceName: cemService
