@@ -41,6 +41,10 @@ phases:
       name: KenCommandOriginal
       properties:
         commandName: KenCommandOriginal
+    - type: COMMAND
+      name: KenCommand2_2
+      properties:
+        commandName: KenCommand2
     stepsInParallel: false
   - type: ENABLE_SERVICE
     name: Enable Service
