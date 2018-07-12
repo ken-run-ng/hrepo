@@ -44,6 +44,11 @@ phases:
     stepsInParallel: false
   - type: ENABLE_SERVICE
     name: Enable Service
+    steps:
+    - type: COMMAND
+      name: KenCommand2
+      properties:
+        commandName: KenCommand2
     stepsInParallel: false
   - type: VERIFY_SERVICE
     name: Verify Service
