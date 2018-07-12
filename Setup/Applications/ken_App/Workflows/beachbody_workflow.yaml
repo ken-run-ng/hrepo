@@ -38,10 +38,6 @@ phases:
     name: Deploy Service
     steps:
     - type: COMMAND
-      name: KenCommandOriginal
-      properties:
-        commandName: KenCommandOriginal
-    - type: COMMAND
       name: KenCommand2_2
       properties:
         commandName: KenCommand2
