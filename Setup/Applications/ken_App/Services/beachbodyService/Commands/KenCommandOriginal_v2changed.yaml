@@ -2,7 +2,7 @@ harnessApiVersion: '1.0'
 type: OTHER
 commandUnitType: COMMAND
 commandUnits:
-- command: 'echo "this is a test #1"'
+- command: 'echo "this is a test #3 NOW"'
   commandUnitType: EXEC
   deploymentType: SSH
   name: Exec
